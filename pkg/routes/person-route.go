@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/Zekeriyyah/hngx/stagetwop/pkg/controllers"
+	"github.com/Zekeriyyah/stagetwo/pkg/controllers"
 	"github.com/gorilla/mux"
 )
 

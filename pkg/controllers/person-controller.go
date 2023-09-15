@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/Zekeriyyah/hngx/stagetwop/pkg/models"
-	"github.com/Zekeriyyah/hngx/stagetwop/pkg/utils"
+	"github.com/Zekeriyyah/stagetwo/pkg/models"
+	"github.com/Zekeriyyah/stagetwo/pkg/utils"
 	"github.com/gorilla/mux"
 )
 

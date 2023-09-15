@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/Zekeriyyah/hngx/stagetwop/pkg/config"
+	"github.com/Zekeriyyah/stagetwo/pkg/config"
 	"github.com/jinzhu/gorm"
 )
 
