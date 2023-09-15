@@ -1,8 +1,8 @@
 package config
 
 import (
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 var (
@@ -10,7 +10,8 @@ var (
 )
 
 func Connect() {
-	d, err := gorm.Open("mysql", "awwal:Awwal@db2@/personsRecord?charset=utf8&parseTime=True&loc=Local")
+	dsn := "host=dpg-ck2bmcfhdsdc73a05o8g-a port=5432 user=record_h59m_user dbname=RECORD password=FZ9EuZHcJH1iX8qwkOPZSPP0JCQXG6lO sslmode=disable"
+	d, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic(err)
 	}

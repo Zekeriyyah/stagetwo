@@ -2,7 +2,7 @@ package models
 
 import (
 	"github.com/Zekeriyyah/stagetwo/pkg/config"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 var db *gorm.DB
@@ -21,7 +21,7 @@ func init() {
 }
 
 func (p *User) CreateUser() *User {
-	db.NewRecord(p)
+	//db.NewRecord(p)
 	db.Create(&p)
 	return p
 }
