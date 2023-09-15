@@ -1,6 +1,6 @@
 github.com/PuerkitoBio/goquery v1.5.1/go.mod h1:GsLWisAFVj4WgDibEWF4pvYnkVQBpKBKeU+7zCJoLcc=
-github.com/Zekeriyyah/hngx/stagetwop v0.0.0-20230915103242-83091c2448ed h1:lQ+cRc7mbqHBqmoqZ3/yWnXKIEOd4NLS8P4cjVY+tNE=
-github.com/Zekeriyyah/hngx/stagetwop v0.0.0-20230915103242-83091c2448ed/go.mod h1:SOqHizzW80avkb+TU5q6f0lNslciDMQxoosT8dJcrXo=
+github.com/Zekeriyyah/hngx/stagetwop v0.0.0-20230915110704-f319cd4dabd2 h1:fM0mMdnA3oXjAGWskzqmORYOSD1uBRwaaP1jYgGyVf4=
+github.com/Zekeriyyah/hngx/stagetwop v0.0.0-20230915110704-f319cd4dabd2/go.mod h1:1ArXhY9f6Aocxk+plf5PDyhWsXB5wVBNmbbUClltt5M=
 github.com/andybalholm/cascadia v1.1.0/go.mod h1:GsXiBklL0woXo1j/WYWtSYYC4ouU9PqHO0sqidkEA4Y=
 github.com/denisenkom/go-mssqldb v0.0.0-20191124224453-732737034ffd h1:83Wprp6ROGeiHFAP8WJdI2RoxALQYgdllERc3N5N2DM=
 github.com/denisenkom/go-mssqldb v0.0.0-20191124224453-732737034ffd/go.mod h1:xbL0rPBG9cCiLr28tMa8zpbdarY27NDyej4t/EjAShU=
