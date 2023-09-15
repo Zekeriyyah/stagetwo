@@ -8,10 +8,10 @@ In the Project main folder:
 1. Run `go mod init <name_to_give_project>` to store all the necessary dependacies needed for the API to work efficiently.
 
 2. Run 
-    `go get -u github.com/jinzhu/gorm`
+    `go get -u gorm.io/driver/postgres`
 
 3. Run
-    `go get -u github.com/jinzhu/gorm/dialects/mysql`
+    `go get -u gorm.io/gorm`
 
 4. Run    
     `go get -u github.com/gorilla/mux`
