@@ -64,7 +64,6 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	ID, _ := strconv.ParseInt(userId, 0, 0)
 
 	deletedUserErr := models.DeleteUser(ID)
-	var resbyte []byte
 	if deletedUserErr == nil {
 		res := "User Deleted Successfully"
 		resbyte, _ := json.Marshal(res)
