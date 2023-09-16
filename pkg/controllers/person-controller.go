@@ -33,7 +33,7 @@ func GetUserById(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println("Error while parsing")
 	}
-
+	
 	userDetails, _ := models.GetUserById(ID)
 	err = json.NewEncoder(w).Encode(userDetails)
 	if err != nil {
