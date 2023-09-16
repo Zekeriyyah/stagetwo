@@ -34,7 +34,7 @@ func GetAllUsers() []User {
 	return Users
 }
 
-func GetUserById(Id int64) (User, error) {
+func GetUserById(Id int64) (User, *gorm.DB, error) {
 	var user User
 	db := db.Where("ID = ?", Id).Find(&user)
 	log.Println("Value of error", db.Error)
