@@ -37,14 +37,17 @@ func GetUserById(w http.ResponseWriter, r *http.Request) {
 	userDetails, db := models.GetUserById(ID)
 	if db.Error != nil {
 		fmt.Fprintf(w, "Sorry, User with the id %v is not found!", ID)
+		w.WriteHeader(http.StatusBadRequest)
 		return
+	} else {
+		err = json.NewEncoder(w).Encode(userDetails)
+		if err != nil {
+			log.Println("Error while encoding response")
+			return
+		}
+		w.WriteHeader(http.StatusOK)
 	}
-	err = json.NewEncoder(w).Encode(userDetails)
-	if err != nil {
-		log.Println("Error while encoding response")
-		return
-	}
-	w.WriteHeader(http.StatusOK)
+	
 }
 
 func CreateUser(w http.ResponseWriter, r *http.Request) {
