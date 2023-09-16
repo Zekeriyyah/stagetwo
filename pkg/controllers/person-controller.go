@@ -36,7 +36,7 @@ func GetUserById(w http.ResponseWriter, r *http.Request) {
 	userDetails, _ := models.GetUserById(ID)
 	err := json.NewEncoder(w).Encode(&userDetails)
 	if err != nil {
-		log.Println("Error while encoding respons"
+		log.Println("Error while encoding respons")
 		return
 	}
 	w.WriteHeader(http.StatusOK)
