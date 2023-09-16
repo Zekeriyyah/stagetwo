@@ -34,10 +34,10 @@ func GetAllUsers() []User {
 	return Users
 }
 
-func GetUserById(Id int64) (*User, *gorm.DB) {
+func GetUserById(Id int64) (User, *gorm.DB) {
 	var user User
 	db := db.Where("ID = ?", Id).Find(&user)
-	return &user, db
+	return user, db
 }
 
 func DeleteUser(Id int64) error {
