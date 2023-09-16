@@ -16,16 +16,17 @@ var NewUser models.User
 func GetUsers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type:", "application/json")
 	newPersons := models.GetAllUsers()
-	w.WriteHeader(http.StatusOK)
-	res, err := json.NewEncoder(w).Encode(newPersons)
+	err := json.NewEncoder(w).Encode(&newPersons)
 	if err != nil {
 		fmt.Println("Error while Encoding!")
+		return
 	}
+	w.WriteHeader(http.StatusOK)
 }
 
 func GetUserById(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type:", "application/json")
 	params := mux.Vars(r)
-
 	userId := params["userId"]
 	ID, err := strconv.ParseInt(userId, 0, 0)
 	if err != nil {
@@ -33,25 +34,28 @@ func GetUserById(w http.ResponseWriter, r *http.Request) {
 	}
 
 	userDetails, _ := models.GetUserById(ID)
-
-	res, _ := json.Marshal(userDetails)
-	w.Header().Set("Content-Type:", "application/json")
+	err := json.NewEncoder(w).Encode(&userDetails)
+	if err != nil {
+		log.Println("Error while encoding respons"
+		return
+	}
 	w.WriteHeader(http.StatusOK)
-	w.Write(res)
-
 }
 
 func CreateUser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	createUser := &models.User{}
 	utils.ParseBody(r, createUser)
 	b := createUser.CreateUser()
-	res, _ := json.Marshal(b)
+	err := json.NewEncoder(w).Encode(&b)
+	if err != nil {
+		log.Println("Error: Encoding failed")
+		return
+	}
 	w.WriteHeader(http.StatusOK)
-	w.Write(res)
 }
 
 func DeleteUser(w http.ResponseWriter, r *http.Request) {
-
 	w.Header().Set("Content-Type", "application/json")
 
 	params := mux.Vars(r)
@@ -62,13 +66,15 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	var resj []byte
 	if deletedUserErr == nil {
 		res := "User Deleted Successfully"
-		resj, _ = json.Marshal(res)
+		resbyte, _ := json.Marshal(res)
+		w.Write(resbyte)
 	} else {
 		res := "Failed to delete User: "
-		resj, _ = json.Marshal(res)
+		resbyte, _ := json.Marshal(res)
+		w.Write(resbyte)
+		return
 	}
-
-	w.Write(resj)
+	w.WriteHeader(http.StatusOK)
 }
 
 func UpdateUser(w http.ResponseWriter, r *http.Request) {
@@ -93,8 +99,6 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 		userDetails.Country = updateUser.Country
 	}
 	db.Save(&userDetails)
-	res, _ := json.Marshal(userDetails)
-	w.Header().Set("Content-Type", "application/json")
+	_ := json.NewEncoder(w).Encode(&userDetails)
 	w.WriteHeader(http.StatusOK)
-	w.Write(res)
 }
