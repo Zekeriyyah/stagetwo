@@ -26,7 +26,7 @@ func GetUsers(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetUserById(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type:", "application/json")
+	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	userId := params["userId"]
 	ID, err := strconv.ParseInt(userId, 0, 0)
