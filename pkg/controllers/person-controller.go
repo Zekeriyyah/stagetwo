@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"log"
 
 	"github.com/Zekeriyyah/stagetwo/pkg/models"
 	"github.com/Zekeriyyah/stagetwo/pkg/utils"
@@ -34,7 +35,7 @@ func GetUserById(w http.ResponseWriter, r *http.Request) {
 	}
 
 	userDetails, _ := models.GetUserById(ID)
-	err := json.NewEncoder(w).Encode(&userDetails)
+	err = json.NewEncoder(w).Encode(&userDetails)
 	if err != nil {
 		log.Println("Error while encoding respons")
 		return
@@ -63,7 +64,7 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	ID, _ := strconv.ParseInt(userId, 0, 0)
 
 	deletedUserErr := models.DeleteUser(ID)
-	var resj []byte
+	var resbyte []byte
 	if deletedUserErr == nil {
 		res := "User Deleted Successfully"
 		resbyte, _ := json.Marshal(res)
@@ -99,6 +100,6 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 		userDetails.Country = updateUser.Country
 	}
 	db.Save(&userDetails)
-	_ := json.NewEncoder(w).Encode(&userDetails)
+	_ = json.NewEncoder(w).Encode(&userDetails)
 	w.WriteHeader(http.StatusOK)
 }
