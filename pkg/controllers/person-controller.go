@@ -34,10 +34,14 @@ func GetUserById(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error while parsing")
 	}
 	
-	userDetails, _ := models.GetUserById(ID)
+	userDetails, db := models.GetUserById(ID)
+	if db.Error != nil {
+		fmt.Fprintf(w, "Sorry, User with the id %v is not found!", ID)
+		return
+	}
 	err = json.NewEncoder(w).Encode(userDetails)
 	if err != nil {
-		log.Println("Error while encoding respons")
+		log.Println("Error while encoding response")
 		return
 	}
 	w.WriteHeader(http.StatusOK)
