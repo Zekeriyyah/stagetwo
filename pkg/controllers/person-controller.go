@@ -96,7 +96,12 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error: Error while parsing")
 	}
 
-	userDetails, db := models.GetUserById(ID)
+	userDetails, db, err := models.GetUserById(ID)
+	if err != nil {
+		fmt.Fprintf(w, "User with Id %v not found", ID)
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
 	if userDetails.Name != "" {
 		userDetails.Name = updateUser.Name
 	}
