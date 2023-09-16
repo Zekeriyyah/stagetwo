@@ -42,7 +42,7 @@ func GetUserById(Id int64) (*User, *gorm.DB) {
 
 func DeleteUser(Id int64) error {
 	var user User
-	err := db.Where("ID = ?", Id).Delete(user).Error
+	err := db.Where("ID = ?", Id).Delete(&user).Error
 	if err != nil {
 		log.Println("Error while deleting: ", err)
 		return err
