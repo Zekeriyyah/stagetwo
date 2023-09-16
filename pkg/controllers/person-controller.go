@@ -14,15 +14,13 @@ import (
 var NewUser models.User
 
 func GetUsers(w http.ResponseWriter, r *http.Request) {
-	newPersons := models.GetAllUsers()
-	res, err := json.Marshal(newPersons)
-	if err != nil {
-		fmt.Println("Error while Marshaling!")
-	}
-
 	w.Header().Set("Content-Type:", "application/json")
+	newPersons := models.GetAllUsers()
 	w.WriteHeader(http.StatusOK)
-	w.Write(res)
+	res, err := json.NewEncoder(w).Encode(newPersons)
+	if err != nil {
+		fmt.Println("Error while Encoding!")
+	}
 }
 
 func GetUserById(w http.ResponseWriter, r *http.Request) {
