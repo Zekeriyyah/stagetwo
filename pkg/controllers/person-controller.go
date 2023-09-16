@@ -34,8 +34,8 @@ func GetUserById(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error while parsing")
 	}
 	
-	userDetails, db := models.GetUserById(ID)
-	if db.Error != nil {
+	userDetails, _, err := models.GetUserById(ID)
+	if err != nil {
 		fmt.Fprintf(w, "Sorry, User with the id %v is not found!", ID)
 		w.WriteHeader(http.StatusBadRequest)
 		return
