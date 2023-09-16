@@ -53,15 +53,24 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteUser(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Content-Type", "application/json")
+
 	params := mux.Vars(r)
 	userId := params["userId"]
 	ID, _ := strconv.ParseInt(userId, 0, 0)
 
-	deletedUser := models.DeleteUser(ID)
+	deletedUserErr := models.DeleteUser(ID)
+	var resj []byte
+	if deletedUserErr == nil {
+		res := "User Deleted Successfully"
+		resj, _ = json.Marshal(res)
+	} else {
+		res := "Failed to delete User: "
+		resj, _ = json.Marshal(res)
+	}
 
-	res, _ := json.Marshal(deletedUser)
-	w.Header().Set("Content-Type:", "application/json")
-	w.Write(res)
+	w.Write(resj)
 }
 
 func UpdateUser(w http.ResponseWriter, r *http.Request) {

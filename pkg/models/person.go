@@ -1,6 +1,8 @@
 package models
 
 import (
+	"log"
+
 	"github.com/Zekeriyyah/stagetwo/pkg/config"
 	"gorm.io/gorm"
 )
@@ -38,8 +40,11 @@ func GetUserById(Id int64) (*User, *gorm.DB) {
 	return &user, db
 }
 
-func DeleteUser(Id int64) User {
+func DeleteUser(Id int64) error {
 	var user User
-	db.Where("ID = ?", Id).Delete(user)
-	return user
+	err := db.Where("ID = ?", Id).Delete(user).Error
+	if err != nil {
+		log.Println("Error while deleting: ", err)
+	}
+	return err
 }
