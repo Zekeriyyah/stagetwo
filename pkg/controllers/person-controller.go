@@ -15,7 +15,7 @@ import (
 var NewUser models.User
 
 func GetUsers(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type:", "application/json")
+	w.Header().Set("Content-Type", "application/json")
 	newPersons := models.GetAllUsers()
 	err := json.NewEncoder(w).Encode(&newPersons)
 	if err != nil {
@@ -34,7 +34,7 @@ func GetUserById(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error while parsing")
 	}
 	
-	userDetails, _, err := models.GetUserById(ID)
+	userDetails, _ , err := models.GetUserById(ID)
 	if err != nil {
 		fmt.Fprintf(w, "Sorry, User with the id %v is not found!", ID)
 		w.WriteHeader(http.StatusBadRequest)
@@ -85,6 +85,7 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func UpdateUser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	var updateUser = &models.User{}
 	utils.ParseBody(r, updateUser)
 	params := mux.Vars(r)
