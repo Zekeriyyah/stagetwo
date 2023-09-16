@@ -45,6 +45,7 @@ func DeleteUser(Id int64) error {
 	err := db.Where("ID = ?", Id).Delete(user).Error
 	if err != nil {
 		log.Println("Error while deleting: ", err)
+		return err
 	}
-	return err
+	return nil
 }
