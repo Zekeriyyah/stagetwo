@@ -38,9 +38,9 @@ func GetUserById(Id int64) (User, *gorm.DB, error) {
 	var user User
 	if result := db.Where("ID = ?", Id).Find(&user); result.Error != nil {
 		log.Println("Error: ", result.Error)
-		return User{}, result, result.Error
+		return User{}, db, result.Error
 	}	
-	return user,result, nil
+	return user,db, nil
 }
 
 func DeleteUser(Id int64) error {
