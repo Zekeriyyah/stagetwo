@@ -26,7 +26,7 @@ func GetUsers(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetUserById(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	
 	params := mux.Vars(r)
 	userId := params["userId"]
 	ID, err := strconv.ParseInt(userId, 0, 0)
@@ -39,14 +39,15 @@ func GetUserById(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Sorry, User with the id %v is not found!", ID)
 		w.WriteHeader(http.StatusBadRequest)
 		return
-	} else {
-		err = json.NewEncoder(w).Encode(userDetails)
-		if err != nil {
-			log.Println("Error while encoding response")
-			return
-		}
-		w.WriteHeader(http.StatusOK)
+	} 
+	w.Header().Set("Content-Type", "application/json")
+	err = json.NewEncoder(w).Encode(userDetails)
+	if err != nil {
+		log.Println("Error while encoding response")
+		return
 	}
+	w.WriteHeader(http.StatusOK)
+	
 	
 	
 	
