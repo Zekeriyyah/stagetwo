@@ -36,12 +36,8 @@ func GetAllUsers() []User {
 
 func GetUserById(Id int64) (User, *gorm.DB, error) {
 	var user User
-	db := db.Where("ID = ?", Id).Find(&user)
+	db = db.Where("ID = ?", Id).Find(&user)
 	log.Println("Value of error", db.Error)
-	if db.Error != nil {
-		log.Println("Id not found")
-		return User{}, db, db.Error
-	}
 	return user,db, db.Error
 }
 
